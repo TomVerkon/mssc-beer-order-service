@@ -41,15 +41,15 @@ import java.util.UUID;
 public class BeerOrder extends BaseEntity {
 
     @Builder
-    public BeerOrder(UUID id, Long version, Timestamp createdDate, Timestamp lastModifiedDate, String customerRef, Customer customer,
-                     Set<BeerOrderLine> beerOrderLines, OrderStatusEnum orderStatus,
-                     String orderStatusCallbackUrl) {
-        super(id, version, createdDate, lastModifiedDate);
-        this.customerRef = customerRef;
-        this.customer = customer;
-        this.beerOrderLines = beerOrderLines;
-        this.orderStatus = orderStatus;
-        this.orderStatusCallbackUrl = orderStatusCallbackUrl;
+    public BeerOrder(UUID id, Long version, Timestamp createdDate, Timestamp lastModifiedDate, String customerRef,
+	    Customer customer, Set<BeerOrderLine> beerOrderLines, OrderStatusEnum orderStatus,
+	    String orderStatusCallbackUrl) {
+	super(id, version, createdDate, lastModifiedDate);
+	this.customerRef = customerRef;
+	this.customer = customer;
+	this.beerOrderLines = beerOrderLines;
+	this.orderStatus = orderStatus;
+	this.orderStatusCallbackUrl = orderStatusCallbackUrl;
     }
 
     private String customerRef;

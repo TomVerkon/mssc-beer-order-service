@@ -26,51 +26,47 @@ public class TastingRoomService {
     private final List<String> beerUpcs = new ArrayList<>(3);
 
     public TastingRoomService(CustomerRepository customerRepository, BeerOrderService beerOrderService,
-                              BeerOrderRepository beerOrderRepository) {
-        this.customerRepository = customerRepository;
-        this.beerOrderService = beerOrderService;
-        this.beerOrderRepository = beerOrderRepository;
+	    BeerOrderRepository beerOrderRepository) {
+	this.customerRepository = customerRepository;
+	this.beerOrderService = beerOrderService;
+	this.beerOrderRepository = beerOrderRepository;
 
-        beerUpcs.add(BeerOrderBootStrap.BEER_1_UPC);
-        beerUpcs.add(BeerOrderBootStrap.BEER_2_UPC);
-        beerUpcs.add(BeerOrderBootStrap.BEER_3_UPC);
+	beerUpcs.add(BeerOrderBootStrap.BEER_1_UPC);
+	beerUpcs.add(BeerOrderBootStrap.BEER_2_UPC);
+	beerUpcs.add(BeerOrderBootStrap.BEER_3_UPC);
     }
 
     @Transactional
-    @Scheduled(fixedRate = 2000) //run every 2 seconds
-    public void placeTastingRoomOrder(){
+    @Scheduled(fixedRate = 2000) // run every 2 seconds
+    public void placeTastingRoomOrder() {
 
-        List<Customer> customerList = customerRepository.findAllByCustomerNameLike(BeerOrderBootStrap.TASTING_ROOM);
+	List<Customer> customerList = customerRepository.findAllByCustomerNameLike(BeerOrderBootStrap.TASTING_ROOM);
 
-        if (customerList.size() == 1){ //should be just one
-            doPlaceOrder(customerList.get(0));
-        } else {
-            log.error("Too many or too few tasting room customers found");
-        }
+	if (customerList.size() == 1) { // should be just one
+	    doPlaceOrder(customerList.get(0));
+	} else {
+	    log.error("Too many or too few tasting room customers found");
+	}
     }
 
     private void doPlaceOrder(Customer customer) {
-        String beerToOrder = getRandomBeerUpc();
+	String beerToOrder = getRandomBeerUpc();
 
-        BeerOrderLineDto beerOrderLine = BeerOrderLineDto.builder()
-                .upc(beerToOrder)
-                .orderQuantity(new Random().nextInt(6)) //todo externalize value to property
-                .build();
+	BeerOrderLineDto beerOrderLine = BeerOrderLineDto.builder().upc(beerToOrder)
+		.orderQuantity(new Random().nextInt(6)) // todo externalize value to property
+		.build();
 
-        List<BeerOrderLineDto> beerOrderLineSet = new ArrayList<>();
-        beerOrderLineSet.add(beerOrderLine);
+	List<BeerOrderLineDto> beerOrderLineSet = new ArrayList<>();
+	beerOrderLineSet.add(beerOrderLine);
 
-        BeerOrderDto beerOrder = BeerOrderDto.builder()
-                .customerId(customer.getId())
-                .customerRef(UUID.randomUUID().toString())
-                .beerOrderLines(beerOrderLineSet)
-                .build();
+	BeerOrderDto beerOrder = BeerOrderDto.builder().customerId(customer.getId())
+		.customerRef(UUID.randomUUID().toString()).beerOrderLines(beerOrderLineSet).build();
 
-        BeerOrderDto savedOrder = beerOrderService.placeOrder(customer.getId(), beerOrder);
+	BeerOrderDto savedOrder = beerOrderService.placeOrder(customer.getId(), beerOrder);
 
     }
 
     private String getRandomBeerUpc() {
-        return beerUpcs.get(new Random().nextInt(beerUpcs.size() -0));
+	return beerUpcs.get(new Random().nextInt(beerUpcs.size() - 0));
     }
 }

@@ -2,7 +2,7 @@
 # Project Specific
 ######################
 /build/www/**
-/target/classes/**
+target/
 
 /src/test/javascript/coverage/
 /src/test/javascript/PhantomJS*/
