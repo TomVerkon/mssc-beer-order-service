@@ -2,6 +2,8 @@
 # Project Specific
 ######################
 /build/www/**
+/target/classes/**
+
 /src/test/javascript/coverage/
 /src/test/javascript/PhantomJS*/
 
@@ -139,4 +141,5 @@ Desktop.ini
 ######################
 .eslintcache
 /.idea/
+
 
