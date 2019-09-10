@@ -17,13 +17,17 @@
 
 package guru.sfg.beer.order.service.web.model;
 
+import java.math.BigDecimal;
+import java.time.OffsetDateTime;
+import java.util.UUID;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+
+import guru.sfg.beer.order.service.services.beer.model.BeerStyleEnum;
 import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
-
-import java.time.OffsetDateTime;
-import java.util.UUID;
 
 @Data
 @NoArgsConstructor
@@ -42,6 +46,11 @@ public class BeerOrderLineDto extends BaseItem {
 
     private String upc;
     private String beerName;
+    private BeerStyleEnum beerStyle;
     private UUID beerId;
+
+    @JsonFormat(shape = JsonFormat.Shape.STRING)
+    private BigDecimal price;
+
     private Integer orderQuantity = 0;
 }

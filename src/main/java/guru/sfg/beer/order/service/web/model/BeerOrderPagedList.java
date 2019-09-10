@@ -17,10 +17,10 @@
 
 package guru.sfg.beer.order.service.web.model;
 
+import java.util.List;
+
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
-
-import java.util.List;
 
 public class BeerOrderPagedList extends PageImpl<BeerOrderDto> {
     /**
