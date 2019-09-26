@@ -17,11 +17,9 @@
 
 package guru.sfg.beer.order.service.repositories;
 
-import java.util.UUID;
-
 import org.springframework.data.repository.PagingAndSortingRepository;
 
 import guru.sfg.beer.order.service.domain.BeerOrderLine;
 
-public interface BeerOrderLineRepository extends PagingAndSortingRepository<BeerOrderLine, UUID> {
+public interface BeerOrderLineRepository extends PagingAndSortingRepository<BeerOrderLine, Long> {
 }

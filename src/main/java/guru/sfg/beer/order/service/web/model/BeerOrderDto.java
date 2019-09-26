@@ -19,7 +19,6 @@ package guru.sfg.beer.order.service.web.model;
 
 import java.time.OffsetDateTime;
 import java.util.List;
-import java.util.UUID;
 
 import lombok.Builder;
 import lombok.Data;
@@ -32,8 +31,8 @@ import lombok.NoArgsConstructor;
 public class BeerOrderDto extends BaseItem {
 
     @Builder
-    public BeerOrderDto(UUID id, Integer version, OffsetDateTime createdDate, OffsetDateTime lastModifiedDate,
-	    UUID customerId, List<BeerOrderLineDto> beerOrderLines, OrderStatusEnum orderStatus,
+    public BeerOrderDto(Long id, Integer version, OffsetDateTime createdDate, OffsetDateTime lastModifiedDate,
+	    Long customerId, List<BeerOrderLineDto> beerOrderLines, OrderStatusEnum orderStatus,
 	    String orderStatusCallbackUrl, String customerRef) {
 	super(id, version, createdDate, lastModifiedDate);
 	this.customerId = customerId;
@@ -43,7 +42,7 @@ public class BeerOrderDto extends BaseItem {
 	this.customerRef = customerRef;
     }
 
-    private UUID customerId;
+    private Long customerId;
     private String customerRef;
     private List<BeerOrderLineDto> beerOrderLines;
     private OrderStatusEnum orderStatus;

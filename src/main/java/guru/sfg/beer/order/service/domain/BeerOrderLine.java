@@ -17,13 +17,9 @@
 package guru.sfg.beer.order.service.domain;
 
 import java.sql.Timestamp;
-import java.util.UUID;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
-
-import org.hibernate.annotations.Type;
 
 import lombok.Builder;
 import lombok.Getter;
@@ -40,11 +36,10 @@ import lombok.Setter;
 public class BeerOrderLine extends BaseEntity {
 
     @Builder
-    public BeerOrderLine(UUID id, Long version, Timestamp createdDate, Timestamp lastModifiedDate, BeerOrder beerOrder,
-	    UUID beerId, String upc, Integer orderQuantity, Integer quantityAllocated) {
+    public BeerOrderLine(Long id, Long version, Timestamp createdDate, Timestamp lastModifiedDate, BeerOrder beerOrder,
+	    Long beerId, String upc, Integer orderQuantity, Integer quantityAllocated) {
 	super(id, version, createdDate, lastModifiedDate);
 	this.beerOrder = beerOrder;
-	this.beerId = beerId;
 	this.upc = upc;
 	this.orderQuantity = orderQuantity;
 	this.quantityAllocated = quantityAllocated;
@@ -53,10 +48,6 @@ public class BeerOrderLine extends BaseEntity {
     @ManyToOne
     private BeerOrder beerOrder;
 
-    @Type(type = "org.hibernate.type.UUIDCharType")
-    @Column(length = 36, columnDefinition = "varchar(36)", updatable = false, nullable = false)
-    private UUID beerId;
-    
     private String upc;
     private Integer orderQuantity = 0;
     private Integer quantityAllocated = 0;

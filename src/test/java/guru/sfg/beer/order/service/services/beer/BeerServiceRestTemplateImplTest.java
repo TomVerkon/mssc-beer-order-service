@@ -1,7 +1,6 @@
 package guru.sfg.beer.order.service.services.beer;
 
 import java.util.Optional;
-import java.util.UUID;
 
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
@@ -28,7 +27,7 @@ class BeerServiceRestTemplateImplTest {
     @Test
     void testGetBeerById() {
 	Optional<BeerDto> optionalBeerDto = beerService
-		.getBeerById(UUID.fromString("0a818933-087d-47f2-ad83-2f986ed087eb"));
+		.getBeerById(1L);
 	assert (optionalBeerDto.isPresent());
 	System.out.println(optionalBeerDto);
     }

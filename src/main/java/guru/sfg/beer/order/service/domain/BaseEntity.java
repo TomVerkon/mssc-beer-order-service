@@ -17,17 +17,16 @@
 package guru.sfg.beer.order.service.domain;
 
 import java.sql.Timestamp;
-import java.util.UUID;
 
 import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Version;
 
 import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.GenericGenerator;
-import org.hibernate.annotations.Type;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import lombok.Getter;
@@ -44,7 +43,7 @@ import lombok.Setter;
 @MappedSuperclass
 public class BaseEntity {
 
-    public BaseEntity(UUID id, Long version, Timestamp createdDate, Timestamp lastModifiedDate) {
+    public BaseEntity(Long id, Long version, Timestamp createdDate, Timestamp lastModifiedDate) {
 	this.id = id;
 	this.version = version;
 	this.createdDate = createdDate;
@@ -52,11 +51,10 @@ public class BaseEntity {
     }
 
     @Id
-    @GeneratedValue(generator = "UUID")
-    @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
-    @Type(type = "org.hibernate.type.UUIDCharType")
-    @Column(length = 36, columnDefinition = "varchar(36)", updatable = false, nullable = false)
-    private UUID id;
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "order_generator")
+    @SequenceGenerator(name = "order_generator", sequenceName = "order_seq", allocationSize = 50)
+    @Column(name = "id", updatable = false, nullable = false)
+    private Long id;
 
     @Version
     private Long version;

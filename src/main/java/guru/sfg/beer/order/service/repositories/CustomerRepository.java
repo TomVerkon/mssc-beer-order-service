@@ -17,7 +17,6 @@
 package guru.sfg.beer.order.service.repositories;
 
 import java.util.List;
-import java.util.UUID;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
@@ -26,6 +25,6 @@ import guru.sfg.beer.order.service.domain.Customer;
 /**
  * Created by jt on 2019-01-26.
  */
-public interface CustomerRepository extends JpaRepository<Customer, UUID> {
+public interface CustomerRepository extends JpaRepository<Customer, Long> {
     List<Customer> findAllByCustomerNameLike(String customerName);
 }

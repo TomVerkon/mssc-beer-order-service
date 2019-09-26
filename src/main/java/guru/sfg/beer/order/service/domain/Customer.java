@@ -18,13 +18,9 @@ package guru.sfg.beer.order.service.domain;
 
 import java.sql.Timestamp;
 import java.util.Set;
-import java.util.UUID;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
-
-import org.hibernate.annotations.Type;
 
 import lombok.Builder;
 import lombok.Getter;
@@ -41,8 +37,8 @@ import lombok.Setter;
 public class Customer extends BaseEntity {
 
     @Builder
-    public Customer(UUID id, Long version, Timestamp createdDate, Timestamp lastModifiedDate, String customerName,
-	    UUID apiKey, Set<BeerOrder> beerOrders) {
+    public Customer(Long id, Long version, Timestamp createdDate, Timestamp lastModifiedDate, String customerName,
+	    String apiKey, Set<BeerOrder> beerOrders) {
 	super(id, version, createdDate, lastModifiedDate);
 	this.customerName = customerName;
 	this.apiKey = apiKey;
@@ -51,9 +47,7 @@ public class Customer extends BaseEntity {
 
     private String customerName;
 
-    @Type(type = "org.hibernate.type.UUIDCharType")
-    @Column(length = 36, columnDefinition = "varchar(36)")
-    private UUID apiKey;
+    private String apiKey;
 
     @OneToMany(mappedBy = "customer")
     private Set<BeerOrder> beerOrders;

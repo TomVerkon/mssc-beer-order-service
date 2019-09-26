@@ -18,7 +18,6 @@
 package guru.sfg.beer.order.service.web.model;
 
 import java.time.OffsetDateTime;
-import java.util.UUID;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -34,7 +33,7 @@ import lombok.Setter;
 @AllArgsConstructor
 public class BaseItem {
     @JsonProperty("id")
-    private UUID id = null;
+    private Long id = null;
 
     @JsonProperty("version")
     private Integer version = null;

@@ -18,7 +18,6 @@
 package guru.sfg.beer.order.service.web.model;
 
 import java.time.OffsetDateTime;
-import java.util.UUID;
 
 import lombok.Builder;
 import lombok.Data;
@@ -31,15 +30,15 @@ import lombok.NoArgsConstructor;
 public class OrderStatusUpdate extends BaseItem {
 
     @Builder
-    public OrderStatusUpdate(UUID id, Integer version, OffsetDateTime createdDate, OffsetDateTime lastModifiedDate,
-	    UUID orderId, String orderStatus, String customerRef) {
+    public OrderStatusUpdate(Long id, Integer version, OffsetDateTime createdDate, OffsetDateTime lastModifiedDate,
+	    Long orderId, String orderStatus, String customerRef) {
 	super(id, version, createdDate, lastModifiedDate);
 	this.orderId = orderId;
 	this.orderStatus = orderStatus;
 	this.customerRef = customerRef;
     }
 
-    private UUID orderId;
+    private Long orderId;
     private String customerRef;
     private String orderStatus;
 }

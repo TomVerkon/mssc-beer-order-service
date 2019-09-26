@@ -3,7 +3,6 @@ package guru.sfg.beer.order.service.services.beer.model;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.OffsetDateTime;
-import java.util.UUID;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -33,7 +32,7 @@ public class BeerDto implements Serializable {
     private static final long serialVersionUID = 3545736275716912663L;
 
     @Null
-    private UUID id;
+    private Long id;
 
     @Null
     private Integer version;

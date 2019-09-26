@@ -17,7 +17,6 @@
 package guru.sfg.beer.order.service.repositories;
 
 import java.util.List;
-import java.util.UUID;
 
 import javax.persistence.LockModeType;
 
@@ -33,12 +32,12 @@ import guru.sfg.beer.order.service.domain.OrderStatusEnum;
 /**
  * Created by jt on 2019-01-26.
  */
-public interface BeerOrderRepository extends JpaRepository<BeerOrder, UUID> {
+public interface BeerOrderRepository extends JpaRepository<BeerOrder, Long> {
 
     Page<BeerOrder> findAllByCustomer(Customer customer, Pageable pageable);
 
     List<BeerOrder> findAllByOrderStatus(OrderStatusEnum orderStatusEnum);
 
     @Lock(LockModeType.PESSIMISTIC_WRITE)
-    BeerOrder findOneById(UUID id);
+    BeerOrder findOneById(Long id);
 }

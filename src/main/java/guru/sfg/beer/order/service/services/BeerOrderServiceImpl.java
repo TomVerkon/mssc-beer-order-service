@@ -18,7 +18,6 @@
 package guru.sfg.beer.order.service.services;
 
 import java.util.Optional;
-import java.util.UUID;
 import java.util.stream.Collectors;
 
 import org.springframework.context.ApplicationEventPublisher;
@@ -56,7 +55,7 @@ public class BeerOrderServiceImpl implements BeerOrderService {
     }
 
     @Override
-    public BeerOrderPagedList listOrders(UUID customerId, Pageable pageable) {
+    public BeerOrderPagedList listOrders(Long customerId, Pageable pageable) {
 	Optional<Customer> customerOptional = customerRepository.findById(customerId);
 
 	if (customerOptional.isPresent()) {
@@ -74,7 +73,7 @@ public class BeerOrderServiceImpl implements BeerOrderService {
 
     @Transactional
     @Override
-    public BeerOrderDto placeOrder(UUID customerId, BeerOrderDto beerOrderDto) {
+    public BeerOrderDto placeOrder(Long customerId, BeerOrderDto beerOrderDto) {
 	Optional<Customer> customerOptional = customerRepository.findById(customerId);
 
 	if (customerOptional.isPresent()) {
@@ -99,19 +98,19 @@ public class BeerOrderServiceImpl implements BeerOrderService {
     }
 
     @Override
-    public BeerOrderDto getOrderById(UUID customerId, UUID orderId) {
+    public BeerOrderDto getOrderById(Long customerId, Long orderId) {
 	return beerOrderMapper.beerOrderToDto(getOrder(customerId, orderId));
     }
 
     @Override
-    public void pickupOrder(UUID customerId, UUID orderId) {
+    public void pickupOrder(Long customerId, Long orderId) {
 	BeerOrder beerOrder = getOrder(customerId, orderId);
 	beerOrder.setOrderStatus(OrderStatusEnum.PICKED_UP);
 
 	beerOrderRepository.save(beerOrder);
     }
 
-    private BeerOrder getOrder(UUID customerId, UUID orderId) {
+    private BeerOrder getOrder(Long customerId, Long orderId) {
 	Optional<Customer> customerOptional = customerRepository.findById(customerId);
 
 	if (customerOptional.isPresent()) {

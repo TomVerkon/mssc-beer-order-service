@@ -18,7 +18,6 @@ package guru.sfg.beer.order.service.domain;
 
 import java.sql.Timestamp;
 import java.util.Set;
-import java.util.UUID;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -43,7 +42,7 @@ import lombok.Setter;
 public class BeerOrder extends BaseEntity {
 
     @Builder
-    public BeerOrder(UUID id, Long version, Timestamp createdDate, Timestamp lastModifiedDate, String customerRef,
+    public BeerOrder(Long id, Long version, Timestamp createdDate, Timestamp lastModifiedDate, String customerRef,
 	    Customer customer, Set<BeerOrderLine> beerOrderLines, OrderStatusEnum orderStatus,
 	    String orderStatusCallbackUrl) {
 	super(id, version, createdDate, lastModifiedDate);
